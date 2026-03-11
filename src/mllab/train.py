@@ -1,10 +1,11 @@
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
-import joblib
 import os
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier  # type: ignore
+from sklearn.metrics import accuracy_score, classification_report  # type: ignore
+import joblib  # type: ignore
+
 from .features import FeatureEngineer
+
 
 
 class Trainer:
@@ -39,7 +40,7 @@ class Trainer:
         y_pred = model.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
         
-        print(f"RandomForest Training Complete.")
+        print("RandomForest Training Complete.")
         print(f"Accuracy: {acc:.4f}")
         print("\nClassification Report:")
         print(classification_report(y_test, y_pred))
