@@ -2565,7 +2565,7 @@ wheels = [
 [[package]]
 name = "trading-data-pipeline"
 version = "0.1.0"
-source = { directory = "../trading-data-pipeline" }
+source = { editable = "../trading-data-pipeline" }
 dependencies = [
     { name = "ccxt" },
     { name = "duckdb" },
@@ -2627,8 +2627,8 @@ requires-dist = [
     { name = "polars", specifier = ">=1.0.0" },
     { name = "scikit-learn", specifier = ">=1.5.0" },
     { name = "torch", specifier = ">=2.2.0" },
-    { name = "trading-data-pipeline", directory = "../trading-data-pipeline" },
-    { name = "trading-strategies", directory = "../trading-strategies" },
+    { name = "trading-data-pipeline", editable = "../trading-data-pipeline" },
+    { name = "trading-strategies", editable = "../trading-strategies" },
     { name = "xgboost", specifier = ">=2.0.0" },
 ]
 
@@ -2644,7 +2644,7 @@ dev = [
 [[package]]
 name = "trading-strategies"
 version = "0.1.0"
-source = { directory = "../trading-strategies" }
+source = { editable = "../trading-strategies" }
 dependencies = [
     { name = "grpcio" },
     { name = "joblib" },
