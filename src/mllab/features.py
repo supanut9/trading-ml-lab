@@ -18,27 +18,27 @@ class FeatureEngineer:
     @staticmethod
     def add_technical_indicators(df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
-        
+
         # Returns
         df["returns"] = df["close"].pct_change()
-        
+
         # Moving Averages
         df["sma_20"] = df["close"].rolling(window=20).mean()
         df["sma_50"] = df["close"].rolling(window=50).mean()
-        
+
         # Volatility
         df["volatility_20"] = df["returns"].rolling(window=20).std()
-        
+
         # RSI (Vectorized version)
         delta = df["close"].diff()
         gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
         loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
         rs = gain / loss
         df["rsi_14"] = 100 - (100 / (1 + rs))
-        
+
         # Price relative to SMA
         df["close_to_sma_20"] = df["close"] / df["sma_20"] - 1
-        
+
         return df
 
     @staticmethod
@@ -57,8 +57,8 @@ class FeatureEngineer:
         df = cls.load_data(db_path, symbol, timeframe)
         df = cls.add_technical_indicators(df)
         df = cls.add_targets(df)
-        
+
         # Drop NaNs created by rolling windows
         df.dropna(inplace=True)
-        
+
         return df
